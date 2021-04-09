@@ -1,31 +1,17 @@
 # 🌐 Hello world! I'm Jerry. 
 
-## 🧑‍💻 Languages & Tools:
-<div>
-  <img src="https://simpleicons.org/icons/react.svg" alt="javascript"/>
-  <img src="https://simpleicons.org/icons/react.svg" alt="react" align="left" width="40" height="40"/>
-</div>
+const jerry = {
+  code: [Javascript, Ruby, HTML, CSS],
+  tools: [React, Redux, Ruby on Rails, Bootstrap],
+  currentProjects: {
+    
+  }
+ currentChallenge: "#100DaysOfCode challenge focused on react and typescript"
+}
 
-  <br/><br/>
-
-## Let's link:
-<div>
-  <a href='mailto:brownjer3@gmail.com'>📧</a>
-  <a href='mailto:brownjer3@gmail.com'>📧</a>
-</div>
-
-
-<!--
-**brownjer3/brownjer3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Let's link
+<p>
+  <a href="mailto:brownjer3@gmail.com"><img alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" title="brownjer3@gmail.com"/>
+  <a href="https://www.linkedin.com/in/jerry-brown-/"><img alt="LinkedIn" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" title="https://www.linkedin.com/in/jerry-brown-/" />
+  <a href="https://medium.com/@brownjer3"><img alt="Medium" src="https://img.shields.io/badge/Medium%20-%23000000.svg?&style=for-the-badge&logo=Medium&logoColor=white" title="https://medium.com/@brownjer3" /></a>
+</p>
