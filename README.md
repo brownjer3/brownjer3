@@ -1,14 +1,16 @@
 # 🌐 Hello world! I'm Jerry. 
 
 ## 🧑‍💻 Languages & Tools:
-<span>
-  <img src="https://simpleicons.org/icons/react.svg" alt="js" align="left" width="40" height="40"/>
-  <img src="https://simpleicons.org/icons/react.svg" alt="js" align="left" width="40" height="40"/>
-
-</span>
-
+<div>
+  <img src="https://simpleicons.org/icons/react.svg" alt="javascript"/>
+  <img src="https://simpleicons.org/icons/react.svg" alt="react" align="left" width="40" height="40"/>
+</div>
 
 ## Let's link:
+<div>
+  <a href='mailto:brownjer3@gmail.com'>📧</a>
+  <a href='mailto:brownjer3@gmail.com'>📧</a>
+</div>
 
 
 <!--
