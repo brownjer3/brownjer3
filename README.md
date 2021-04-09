@@ -1,13 +1,16 @@
 # 🌐 Hello world! I'm Jerry. 
 
+```
 const jerry = {
   code: [Javascript, Ruby, HTML, CSS],
   tools: [React, Redux, Ruby on Rails, Bootstrap],
   currentProjects: {
-    
+    NFT-Drop-Calendar: "A single-page web app to track the release dates of upcoming NFT drops", 
+    Cadence-Tunes: "A single-page web app that allows runners to build Spotify playlists based on their target running cadence (step count)" 
   }
- currentChallenge: "#100DaysOfCode challenge focused on react and typescript"
+ currentChallenge: "#100DaysOfCode challenge focused on react, solidity, & dApp development"
 }
+```
 
 ## Let's link
 <p>
