@@ -6,6 +6,8 @@
   <img src="https://simpleicons.org/icons/react.svg" alt="react" align="left" width="40" height="40"/>
 </div>
 
+  <br/><br/>
+
 ## Let's link:
 <div>
   <a href='mailto:brownjer3@gmail.com'>📧</a>
