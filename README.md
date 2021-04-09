@@ -1,9 +1,15 @@
-### 🌐 Hello world! I'm Jerry. 
+# 🌐 Hello world! I'm Jerry. 
 
-## 🧑‍💻 How to reach me:
+## 🧑‍💻 Languages & Tools:
+<span>
+  <img src="https://simpleicons.org/icons/react.svg" alt="js" align="left" width="40" height="40"/>
+  <img src="https://simpleicons.org/icons/react.svg" alt="js" align="left" width="40" height="40"/>
+
+</span>
 
 
-## 📫 How to reach me:
+## Let's link:
+
 
 <!--
 **brownjer3/brownjer3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
