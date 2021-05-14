@@ -5,10 +5,10 @@ const jerry = {
   code: [Javascript, Ruby, HTML, CSS],
   tools: [React, Redux, Ruby on Rails, Bootstrap],
   currentProjects: {
-    NFT-Drop-Calendar: "A single-page web app to track the release dates of upcoming NFT drops", 
-    Cadence-Tunes: "A single-page web app that allows runners to build Spotify playlists based on their target running cadence (step count)" 
-  }
- currentChallenge: "#100DaysOfCode challenge focused on react, solidity, & dApp development"
+    "NFT-Drop-Calendar": "A single-page web app to track the release dates of upcoming NFT drops", 
+    "Cadence-Tunes": "A single-page web app that allows runners to build Spotify playlists based on their target running cadence (step count)" 
+  }, 
+  website: "https://jerry-codes.netlify.app/"
 }
 ```
 
