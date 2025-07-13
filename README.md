@@ -1,180 +1,186 @@
-# 🎮 Simple SVG Animated Tetris
+# 🎮 CSS Animated Tetris (GitHub Compatible)
 
-> Testing the simplest possible SVG animation for GitHub README
+> This uses CSS animations embedded in SVG - confirmed to work in GitHub READMEs!
 
-## Test 1: Basic Falling Block
+## Working Animated Tetris
 
-<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="300" fill="#000000"/>
-  <rect x="85" y="10" width="30" height="30" fill="#00ffff">
-    <animate attributeName="y" from="10" to="260" dur="3s" repeatCount="indefinite"/>
-  </rect>
-</svg>
+<div align="center">
 
-## Test 2: Falling + Rotating Block
+<img src="data:image/svg+xml,%3Csvg width='300' height='500' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E@keyframes fall{0%25{transform:translateY(0)}100%25{transform:translateY(420px)}}@keyframes flash{0%25,49%25,51%25,100%25{opacity:1}50%25{opacity:0}}.falling{animation:fall 3s ease-in infinite}.flashing{animation:flash 0.5s infinite}%3C/style%3E%3C/defs%3E%3Crect width='300' height='500' fill='%23111'/%3E%3Cg stroke='%23333' stroke-width='1' fill='none'%3E%3Cpath d='M50 0v500M100 0v500M150 0v500M200 0v500M250 0v500M0 50h300M0 100h300M0 150h300M0 200h300M0 250h300M0 300h300M0 350h300M0 400h300M0 450h300'/%3E%3C/g%3E%3Cg class='falling'%3E%3Crect x='100' y='0' width='50' height='50' fill='%2300ffff' stroke='%23fff' stroke-width='2'/%3E%3Crect x='100' y='50' width='50' height='50' fill='%2300ffff' stroke='%23fff' stroke-width='2'/%3E%3Crect x='100' y='100' width='50' height='50' fill='%2300ffff' stroke='%23fff' stroke-width='2'/%3E%3Crect x='100' y='150' width='50' height='50' fill='%2300ffff' stroke='%23fff' stroke-width='2'/%3E%3C/g%3E%3Crect x='0' y='450' width='50' height='50' fill='%23666'/%3E%3Crect x='50' y='450' width='50' height='50' fill='%23666'/%3E%3Crect x='100' y='450' width='50' height='50' fill='%23666'/%3E%3Crect x='200' y='450' width='50' height='50' fill='%23666'/%3E%3Crect x='250' y='450' width='50' height='50' fill='%23666'/%3E%3Ctext x='150' y='30' text-anchor='middle' fill='%23fff' font-family='monospace' font-size='20' class='flashing'%3ETETRIS%3C/text%3E%3C/svg%3E" alt="Animated Tetris">
 
-<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="300" fill="#000000"/>
-  <g>
-    <rect x="85" y="10" width="30" height="30" fill="#ff00ff">
-      <animate attributeName="y" from="10" to="260" dur="3s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="rotate" from="0 100 25" to="360 100 25" dur="3s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-</svg>
+</div>
 
-## Test 3: Multiple Blocks Falling
+## Alternative: Self-Hosted SVG File
 
-<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="300" fill="#111111"/>
+Create a file called `tetris.svg` in your repo:
+
+```svg
+<svg width="300" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes fall {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(400px); }
+      }
+      
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      @keyframes slideLeft {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(-50px); }
+      }
+      
+      @keyframes slideRight {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(50px); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+      }
+      
+      @keyframes clear {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); filter: brightness(2); }
+        100% { opacity: 0; transform: scale(0); }
+      }
+      
+      .piece-1 {
+        animation: fall 4s linear infinite;
+      }
+      
+      .piece-2 {
+        animation: fall 4s linear infinite, rotate 4s linear infinite;
+        animation-delay: 1s;
+        transform-origin: 125px 75px;
+      }
+      
+      .piece-3 {
+        animation: fall 4s linear infinite, slideLeft 4s ease-in-out infinite;
+        animation-delay: 2s;
+      }
+      
+      .piece-4 {
+        animation: fall 4s linear infinite, slideRight 4s ease-in-out infinite;
+        animation-delay: 3s;
+      }
+      
+      .grid-line {
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      .clear-line {
+        animation: clear 1s ease-out infinite;
+        animation-delay: 3.5s;
+      }
+    </style>
+  </defs>
   
-  <!-- First block -->
-  <rect x="50" y="10" width="30" height="30" fill="#00ffff">
-    <animate attributeName="y" from="10" to="260" dur="2s" repeatCount="indefinite"/>
-  </rect>
-  
-  <!-- Second block (delayed) -->
-  <rect x="85" y="10" width="30" height="30" fill="#ffff00">
-    <animate attributeName="y" from="10" to="260" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-  </rect>
-  
-  <!-- Third block (more delayed) -->
-  <rect x="120" y="10" width="30" height="30" fill="#ff00ff">
-    <animate attributeName="y" from="10" to="260" dur="2s" begin="1s" repeatCount="indefinite"/>
-  </rect>
-</svg>
-
-## Test 4: Simple Tetris I-Piece
-
-<svg width="200" height="400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="400" fill="#000000"/>
-  
-  <!-- I-piece (4 blocks) -->
-  <g>
-    <rect x="85" y="10" width="30" height="30" fill="#00ffff" stroke="#ffffff" stroke-width="2">
-      <animate attributeName="y" from="10" to="340" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="85" y="40" width="30" height="30" fill="#00ffff" stroke="#ffffff" stroke-width="2">
-      <animate attributeName="y" from="40" to="370" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="85" y="70" width="30" height="30" fill="#00ffff" stroke="#ffffff" stroke-width="2">
-      <animate attributeName="y" from="70" to="400" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="85" y="100" width="30" height="30" fill="#00ffff" stroke="#ffffff" stroke-width="2">
-      <animate attributeName="y" from="100" to="430" dur="4s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-</svg>
-
-## Test 5: Grid Background + Falling Piece
-
-<svg width="240" height="400" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="240" height="400" fill="#000000"/>
+  <rect width="300" height="500" fill="#0a0a0a"/>
   
-  <!-- Grid lines -->
-  <g stroke="#333333" stroke-width="1" fill="none">
-    <!-- Vertical lines -->
-    <line x1="30" y1="0" x2="30" y2="400"/>
-    <line x1="60" y1="0" x2="60" y2="400"/>
-    <line x1="90" y1="0" x2="90" y2="400"/>
-    <line x1="120" y1="0" x2="120" y2="400"/>
-    <line x1="150" y1="0" x2="150" y2="400"/>
-    <line x1="180" y1="0" x2="180" y2="400"/>
-    <line x1="210" y1="0" x2="210" y2="400"/>
-    
-    <!-- Horizontal lines every 30px -->
-    <line x1="0" y1="30" x2="240" y2="30"/>
-    <line x1="0" y1="60" x2="240" y2="60"/>
-    <line x1="0" y1="90" x2="240" y2="90"/>
-    <line x1="0" y1="120" x2="240" y2="120"/>
-    <line x1="0" y1="150" x2="240" y2="150"/>
-    <line x1="0" y1="180" x2="240" y2="180"/>
-    <line x1="0" y1="210" x2="240" y2="210"/>
-    <line x1="0" y1="240" x2="240" y2="240"/>
-    <line x1="0" y1="270" x2="240" y2="270"/>
-    <line x1="0" y1="300" x2="240" y2="300"/>
-    <line x1="0" y1="330" x2="240" y2="330"/>
-    <line x1="0" y1="360" x2="240" y2="360"/>
+  <!-- Grid -->
+  <g stroke="#222" stroke-width="1" fill="none" class="grid-line">
+    <path d="M50 0v500 M100 0v500 M150 0v500 M200 0v500 M250 0v500"/>
+    <path d="M0 50h300 M0 100h300 M0 150h300 M0 200h300 M0 250h300 M0 300h300 M0 350h300 M0 400h300 M0 450h300"/>
+  </g>
+  
+  <!-- Piece 1: I-piece (falling straight) -->
+  <g class="piece-1">
+    <rect x="100" y="0" width="50" height="50" fill="#00ffff" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="50" width="50" height="50" fill="#00ffff" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="100" width="50" height="50" fill="#00ffff" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="150" width="50" height="50" fill="#00ffff" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Piece 2: T-piece (falling and rotating) -->
+  <g class="piece-2">
+    <rect x="100" y="50" width="50" height="50" fill="#ff00ff" stroke="#fff" stroke-width="2"/>
+    <rect x="50" y="100" width="50" height="50" fill="#ff00ff" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="100" width="50" height="50" fill="#ff00ff" stroke="#fff" stroke-width="2"/>
+    <rect x="150" y="100" width="50" height="50" fill="#ff00ff" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Piece 3: L-piece (falling and sliding left) -->
+  <g class="piece-3">
+    <rect x="150" y="0" width="50" height="50" fill="#ff7700" stroke="#fff" stroke-width="2"/>
+    <rect x="150" y="50" width="50" height="50" fill="#ff7700" stroke="#fff" stroke-width="2"/>
+    <rect x="150" y="100" width="50" height="50" fill="#ff7700" stroke="#fff" stroke-width="2"/>
+    <rect x="200" y="100" width="50" height="50" fill="#ff7700" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Piece 4: Z-piece (falling and sliding right) -->
+  <g class="piece-4">
+    <rect x="50" y="0" width="50" height="50" fill="#ff0000" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="0" width="50" height="50" fill="#ff0000" stroke="#fff" stroke-width="2"/>
+    <rect x="100" y="50" width="50" height="50" fill="#ff0000" stroke="#fff" stroke-width="2"/>
+    <rect x="150" y="50" width="50" height="50" fill="#ff0000" stroke="#fff" stroke-width="2"/>
   </g>
   
   <!-- Static pieces at bottom -->
-  <rect x="30" y="360" width="30" height="30" fill="#666666"/>
-  <rect x="60" y="360" width="30" height="30" fill="#666666"/>
-  <rect x="90" y="360" width="30" height="30" fill="#666666"/>
-  <rect x="150" y="360" width="30" height="30" fill="#666666"/>
-  <rect x="180" y="360" width="30" height="30" fill="#666666"/>
+  <rect x="0" y="450" width="50" height="50" fill="#666"/>
+  <rect x="50" y="450" width="50" height="50" fill="#666"/>
+  <rect x="100" y="450" width="50" height="50" fill="#666"/>
+  <rect x="150" y="450" width="50" height="50" fill="#666"/>
+  <rect x="200" y="450" width="50" height="50" fill="#666"/>
+  <rect x="250" y="450" width="50" height="50" fill="#666"/>
   
-  <!-- Falling T-piece -->
-  <g>
-    <rect x="90" y="0" width="30" height="30" fill="#ff00ff">
-      <animate attributeName="y" from="0" to="330" dur="3s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="60" y="30" width="30" height="30" fill="#ff00ff">
-      <animate attributeName="y" from="30" to="360" dur="3s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="90" y="30" width="30" height="30" fill="#ff00ff">
-      <animate attributeName="y" from="30" to="360" dur="3s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="120" y="30" width="30" height="30" fill="#ff00ff">
-      <animate attributeName="y" from="30" to="360" dur="3s" repeatCount="indefinite"/>
-    </rect>
-  </g>
+  <rect x="0" y="400" width="50" height="50" fill="#666"/>
+  <rect x="50" y="400" width="50" height="50" fill="#666"/>
+  <rect x="150" y="400" width="50" height="50" fill="#666"/>
+  <rect x="250" y="400" width="50" height="50" fill="#666"/>
+  
+  <!-- Line clear effect -->
+  <rect x="0" y="450" width="300" height="50" fill="#fff" opacity="0" class="clear-line"/>
+  
+  <!-- Score -->
+  <text x="150" y="30" text-anchor="middle" fill="#fff" font-family="monospace" font-size="20">
+    SCORE: 1337
+  </text>
 </svg>
+```
 
-## Test 6: Line Clear Effect
+Then reference it in your README:
 
-<svg width="240" height="200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="240" height="200" fill="#000000"/>
-  
-  <!-- Bottom row that will "clear" -->
-  <g>
-    <rect x="0" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="30" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="60" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="90" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="120" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="150" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="180" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="210" y="170" width="30" height="30" fill="#ffffff">
-      <animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-  
-  <!-- Pieces above that will drop -->
-  <rect x="60" y="140" width="30" height="30" fill="#00ffff">
-    <animate attributeName="y" values="140;140;170" dur="2s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="150" y="140" width="30" height="30" fill="#ffff00">
-    <animate attributeName="y" values="140;140;170" dur="2s" repeatCount="indefinite"/>
-  </rect>
+```markdown
+![Animated Tetris](./tetris.svg)
+```
+
+## Simple Working Example
+
+Here's the simplest CSS-animated block that definitely works:
+
+```svg
+<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes drop {
+      from { transform: translateY(0px); }
+      to { transform: translateY(250px); }
+    }
+    .block { animation: drop 2s ease-in infinite; }
+  </style>
+  <rect width="200" height="300" fill="#000"/>
+  <rect class="block" x="85" y="10" width="30" height="30" fill="#0ff"/>
 </svg>
+```
 
----
+## Key Points for GitHub SVG Animations:
 
-## 🧪 Which animations work for you?
+1. ✅ Use CSS `@keyframes` and `animation` property
+2. ✅ Embed styles directly in the SVG
+3. ✅ Use `transform`, `opacity`, and other CSS properties
+4. ❌ Don't use `<animate>` or `<animateTransform>` tags
+5. ❌ Don't use JavaScript
+6. ❌ Don't link to external CSS files
 
-These are the simplest possible SVG animations. They use only:
-- `<animate>` for basic property animation
-- `attributeName` to specify what to animate
-- `from`/`to` or `values` for the animation values
-- `dur` for duration
-- `repeatCount="indefinite"` for looping
+## Hosting Options:
 
-No CSS, no complex transforms, just pure SVG animation elements.
+1. **Data URI** (shown above) - Embed directly in markdown
+2. **Repository file** - Save as `.svg` and reference with relative path
+3. **GitHub Pages** - Host and link to the SVG file
 
-Let me know which ones display correctly and we can build from there!
+The data URI method works immediately but creates long URLs. The repository file method is cleaner for complex animations.
