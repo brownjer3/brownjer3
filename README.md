@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="./dino.svg" alt="Dino Runner" width="800"/>
-
-### Hi, I'm Jerry Brown
+<img src="./dino.svg" alt="Dino Runner" width="850"/>
 
 </div>
