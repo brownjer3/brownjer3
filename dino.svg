@@ -1,0 +1,203 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* ============ ANIMATIONS (8s shared cycle) ============ */
+
+      /* Dino jump: two jumps per cycle, timed to clear obstacles */
+      @keyframes jump {
+        0%, 10% { transform: translateY(0); }
+        15% { transform: translateY(-55px); }
+        20% { transform: translateY(-55px); }
+        27% { transform: translateY(0); }
+        50%, 60% { transform: translateY(0); }
+        65% { transform: translateY(-55px); }
+        70% { transform: translateY(-55px); }
+        77% { transform: translateY(0); }
+        100% { transform: translateY(0); }
+      }
+
+      /* Obstacle group 1: scroll right to left */
+      @keyframes scroll1 {
+        0% { transform: translateX(700px); }
+        100% { transform: translateX(-200px); }
+      }
+
+      /* Obstacle group 2: same but offset start */
+      @keyframes scroll2 {
+        0% { transform: translateX(700px); }
+        100% { transform: translateX(-200px); }
+      }
+
+      /* Ground dashes scrolling */
+      @keyframes groundScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-40px); }
+      }
+
+      /* Score flicker */
+      @keyframes scorePulse {
+        0%, 95% { opacity: 0.7; }
+        97% { opacity: 1; }
+        100% { opacity: 0.7; }
+      }
+
+      /* Scanline sweep */
+      @keyframes scanline {
+        0% { transform: translateY(-200px); }
+        100% { transform: translateY(200px); }
+      }
+
+      /* Dino eye blink */
+      @keyframes blink {
+        0%, 90%, 100% { opacity: 1; }
+        95% { opacity: 0; }
+      }
+
+      /* Terminal cursor blink */
+      @keyframes cursorBlink {
+        0%, 49% { opacity: 0.6; }
+        50%, 100% { opacity: 0; }
+      }
+
+      .dino { animation: jump 8s ease-in-out infinite; }
+      .obs1 { animation: scroll1 4s linear infinite; }
+      .obs2 { animation: scroll2 4s linear infinite; animation-delay: -2s; }
+      .ground-marks { animation: groundScroll 0.5s linear infinite; }
+      .score { animation: scorePulse 4s ease infinite; }
+      .scan { animation: scanline 4s linear infinite; }
+      .eye { animation: blink 8s step-end infinite; }
+      .cursor { animation: cursorBlink 1.2s step-end infinite; }
+    </style>
+
+    <!-- Scanline pattern for CRT effect -->
+    <pattern id="scanlines" width="800" height="4" patternUnits="userSpaceOnUse">
+      <rect width="800" height="2" fill="transparent"/>
+      <rect y="2" width="800" height="2" fill="#00ff41" opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <!-- ============ BACKGROUND ============ -->
+  <rect width="800" height="200" fill="#0a0a0a"/>
+  <rect width="800" height="200" fill="url(#scanlines)"/>
+
+  <!-- Scanline sweep bar -->
+  <rect width="800" height="3" fill="#00ff41" opacity="0.04" class="scan"/>
+
+  <!-- ============ GROUND ============ -->
+  <line x1="0" y1="160" x2="800" y2="160" stroke="#00ff41" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Scrolling ground texture marks -->
+  <g class="ground-marks" opacity="0.4">
+    <line x1="20"  y1="163" x2="28"  y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="60"  y1="165" x2="65"  y2="165" stroke="#00ff41" stroke-width="1"/>
+    <line x1="100" y1="163" x2="110" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="150" y1="164" x2="155" y2="164" stroke="#00ff41" stroke-width="1"/>
+    <line x1="200" y1="163" x2="212" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="260" y1="165" x2="266" y2="165" stroke="#00ff41" stroke-width="1"/>
+    <line x1="310" y1="163" x2="318" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="370" y1="164" x2="375" y2="164" stroke="#00ff41" stroke-width="1"/>
+    <line x1="420" y1="163" x2="430" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="480" y1="165" x2="486" y2="165" stroke="#00ff41" stroke-width="1"/>
+    <line x1="530" y1="163" x2="540" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="590" y1="164" x2="596" y2="164" stroke="#00ff41" stroke-width="1"/>
+    <line x1="640" y1="163" x2="650" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="700" y1="165" x2="707" y2="165" stroke="#00ff41" stroke-width="1"/>
+    <line x1="750" y1="163" x2="760" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="790" y1="164" x2="798" y2="164" stroke="#00ff41" stroke-width="1"/>
+    <!-- Duplicate set for seamless scroll -->
+    <line x1="820" y1="163" x2="828" y2="163" stroke="#00ff41" stroke-width="1"/>
+    <line x1="840" y1="165" x2="845" y2="165" stroke="#00ff41" stroke-width="1"/>
+  </g>
+
+  <!-- ============ DINOSAUR (pixel art, ~8px grid) ============ -->
+  <g class="dino" transform="translate(100, 0)">
+    <!-- Body -->
+    <rect x="0"  y="120" width="8" height="8" fill="#00ff41"/>
+    <rect x="8"  y="120" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="120" width="8" height="8" fill="#00ff41"/>
+
+    <rect x="-8" y="112" width="8" height="8" fill="#00ff41"/>
+    <rect x="0"  y="112" width="8" height="8" fill="#00ff41"/>
+    <rect x="8"  y="112" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="112" width="8" height="8" fill="#00ff41"/>
+    <rect x="24" y="112" width="8" height="8" fill="#00ff41"/>
+
+    <rect x="-8" y="104" width="8" height="8" fill="#00ff41"/>
+    <rect x="0"  y="104" width="8" height="8" fill="#00ff41"/>
+    <rect x="8"  y="104" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="104" width="8" height="8" fill="#00ff41"/>
+
+    <rect x="0"  y="96" width="8" height="8" fill="#00ff41"/>
+    <rect x="8"  y="96" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="96" width="8" height="8" fill="#00ff41"/>
+    <rect x="24" y="96" width="8" height="8" fill="#00cc33"/>
+
+    <!-- Neck + head -->
+    <rect x="8"  y="88" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="88" width="8" height="8" fill="#00ff41"/>
+
+    <rect x="8"  y="80" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="80" width="8" height="8" fill="#00ff41"/>
+    <rect x="24" y="80" width="8" height="8" fill="#00ff41"/>
+    <rect x="32" y="80" width="8" height="8" fill="#00ff41"/>
+
+    <rect x="8"  y="72" width="8" height="8" fill="#00ff41"/>
+    <rect x="16" y="72" width="8" height="8" fill="#00ff41"/>
+    <rect x="24" y="72" width="8" height="8" fill="#00ff41"/>
+    <rect x="32" y="72" width="8" height="8" fill="#00ff41"/>
+
+    <!-- Top of head -->
+    <rect x="16" y="64" width="8" height="8" fill="#00ff41"/>
+    <rect x="24" y="64" width="8" height="8" fill="#00ff41"/>
+    <rect x="32" y="64" width="8" height="8" fill="#00ff41"/>
+
+    <!-- Eye (dark pixel) -->
+    <rect x="28" y="72" width="6" height="6" fill="#0a0a0a" class="eye"/>
+
+    <!-- Arm -->
+    <rect x="24" y="104" width="8" height="4" fill="#00cc33"/>
+    <rect x="32" y="104" width="4" height="4" fill="#00cc33"/>
+
+    <!-- Tail -->
+    <rect x="-16" y="112" width="8" height="8" fill="#00ff41"/>
+    <rect x="-24" y="104" width="8" height="8" fill="#00ff41"/>
+    <rect x="-32" y="96"  width="8" height="8" fill="#00ff41"/>
+
+    <!-- Legs -->
+    <rect x="0"  y="128" width="8" height="16" fill="#00ff41"/>
+    <rect x="0"  y="144" width="8" height="8"  fill="#00ff41"/>
+    <rect x="8"  y="152" width="8" height="8"  fill="#00ff41"/>
+
+    <rect x="16" y="128" width="8" height="16" fill="#00ff41"/>
+    <rect x="16" y="144" width="8" height="8"  fill="#00ff41"/>
+    <rect x="24" y="152" width="8" height="8"  fill="#00ff41"/>
+  </g>
+
+  <!-- ============ OBSTACLES ============ -->
+
+  <!-- Obstacle group 1: curly braces -->
+  <g class="obs1">
+    <text x="0" y="155" font-family="monospace" font-size="36" font-weight="bold" fill="#00ff41" opacity="0.9">{</text>
+    <text x="30" y="155" font-family="monospace" font-size="36" font-weight="bold" fill="#00ff41" opacity="0.9">}</text>
+  </g>
+
+  <!-- Obstacle group 2: angle brackets / closing tag -->
+  <g class="obs2">
+    <text x="0" y="150" font-family="monospace" font-size="28" font-weight="bold" fill="#00ff41" opacity="0.9">&lt;/&gt;</text>
+  </g>
+
+  <!-- ============ SCORE ============ -->
+  <text x="670" y="30" font-family="monospace" font-size="14" fill="#00ff41" class="score">HI 00048  00032</text>
+
+  <!-- ============ DECORATIVE STARS ============ -->
+  <circle cx="300" cy="40" r="1" fill="#00ff41" opacity="0.3"/>
+  <circle cx="450" cy="25" r="1.5" fill="#00ff41" opacity="0.2"/>
+  <circle cx="550" cy="55" r="1" fill="#00ff41" opacity="0.25"/>
+  <circle cx="380" cy="70" r="1" fill="#00ff41" opacity="0.15"/>
+  <circle cx="620" cy="35" r="1.2" fill="#00ff41" opacity="0.2"/>
+  <circle cx="250" cy="60" r="1" fill="#00ff41" opacity="0.2"/>
+
+  <!-- Terminal cursor blinking effect in corner -->
+  <rect x="15" y="15" width="8" height="14" fill="#00ff41" class="cursor"/>
+  <text x="28" y="27" font-family="monospace" font-size="12" fill="#00ff41" opacity="0.4">~/brownjer3</text>
+</svg>
